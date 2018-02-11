@@ -1,3 +1,4 @@
+import numpy as np
+
 def warmup_exercise():
-	A = [[1, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1]]
-	return A
+	return np.identity(5)

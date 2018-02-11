@@ -20,14 +20,14 @@ if __name__ == '__main__':
 	data = np.loadtxt('ex1data1.txt', delimiter=',')
 	m = np.shape(data)
 	x = data[:,0]
-	y = data[:,1]
+	y = np.c_[data[:,1]]
 	plot_data(x, y)
 
 	"""
 		Part 3: Cost And Gradient Descent
 	"""
-	x = np.vstack(zip(np.ones(m),data[:,0]))
-	theta = np.zeros(2)
+	x = np.c_[np.ones(data.shape[0]), data[:,0]]
+	theta = np.zeros((2,1))
 	iterations = 1500
 	alpha = .01
 	J = compute_cost(x, y, theta)
