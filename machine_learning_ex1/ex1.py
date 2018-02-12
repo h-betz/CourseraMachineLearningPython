@@ -1,6 +1,7 @@
 from machine_learning_ex1.plot_data import plot_data
 from machine_learning_ex1.warmup_exercise import warmup_exercise
 from machine_learning_ex1.compute_cost import compute_cost
+from machine_learning_ex1.gradient_descent import gradient_descent
 import numpy as np
 import matplotlib
 
@@ -31,4 +32,11 @@ if __name__ == '__main__':
 	iterations = 1500
 	alpha = .01
 	J = compute_cost(x, y, theta)
-	print('cost: %0.4f ' % J)
+	print('With theta = [0 ; 0]\nCost computed = %s\n' % J)
+	print('Expected cost value (approx) 32.07\n')
+	J = compute_cost(x, y, [[-1],[2]])
+	print('With theta = [-1 ; 2]\nCost computed = %s\n' % J)
+	print('Running Gradient Descent ...')
+	theta = gradient_descent(x, y, theta, alpha, iterations)
+	print('Theta found by gradient descent:')
+	print('%s' % theta)
