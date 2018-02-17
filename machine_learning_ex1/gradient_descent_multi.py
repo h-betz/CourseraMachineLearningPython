@@ -8,8 +8,10 @@ def gradient_descent_multi(x, y, theta, alpha, num_iters):
 
 	for j in range(1, num_iters):
 		h = x.dot(theta)
-		delta = (1 / m) * (x.T.dot(h-y))
-		theta = theta - (alpha * delta)
+		s = x.shape[1]
+		delta = (1 / m) * np.sum(np.multiply(x,np.tile(h-y,s)))
+		# delta = (1 / m) * np.sum((x.T.dot(h-y)))
+		theta = (theta.T - (alpha * delta)).T
 		j_history[j] = compute_cost_multi(x, y, theta)
 
 	return theta, j_history

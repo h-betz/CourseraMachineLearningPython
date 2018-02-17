@@ -12,7 +12,7 @@ if __name__ == '__main__':
 	"""
 	data = np.loadtxt('ex1data2.txt', delimiter=',')
 	x = data[:,:2]
-	y = data[:,2]
+	y = np.c_[data[:,2]]
 	m = len(y)
 
 	print('First 10 examples from the dataset:')
