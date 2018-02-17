@@ -7,7 +7,7 @@ if __name__ == '__main__':
 		Part 1: Feature Normalization
 	"""
 	data = np.loadtxt('ex1data2.txt', delimiter=',')
-	x = data[:,:1]
+	x = data[:,:2]
 	y = data[:,2]
 	m = len(y);
 

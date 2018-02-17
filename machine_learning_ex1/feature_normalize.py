@@ -23,7 +23,7 @@ def feature_normalize(x):
 	#
 	# Hint: You might find the 'mean' and 'std' functions useful.
 	#
-
+	
 
 	# ============================================================
 	return x_norm, mu, sigma

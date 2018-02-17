@@ -2,8 +2,12 @@ from machine_learning_ex1.plot_data import plot_data
 from machine_learning_ex1.warmup_exercise import warmup_exercise
 from machine_learning_ex1.compute_cost import compute_cost
 from machine_learning_ex1.gradient_descent import gradient_descent
-import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+import matplotlib.pyplot as plt
 import matplotlib
+from pylab import *
+import numpy as np
 
 if __name__ == '__main__':
 	"""
@@ -65,3 +69,10 @@ if __name__ == '__main__':
 		for j in range(len(theta1_vals)):
 			t = np.matrix('%s;%s' % (theta0_vals[i], theta1_vals[j]))
 			j_vals[i,j] = compute_cost(x, y, t)
+
+	fig = plt.figure()
+	j_vals = j_vals.transpose()
+	ax = fig.gca(projection='3d')
+	X, Y = np.meshgrid(theta0_vals, theta1_vals)
+	surf = ax.plot_surface(X, Y, j_vals, rstride=1, cstride=1, antialiased=True)
+	plt.show()
