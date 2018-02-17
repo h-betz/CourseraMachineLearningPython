@@ -23,7 +23,11 @@ def feature_normalize(x):
 	#
 	# Hint: You might find the 'mean' and 'std' functions useful.
 	#
-	
+	x_norm, mu, sigma = x, np.zeros((1,2)), np.zeros((1,2))
+	mu = x.mean(axis=0)
+	sigma = x.std(axis=0)
+	for i in range(len(x)):
+		x_norm[i] = (x[i] - mu) / sigma
 
 	# ============================================================
 	return x_norm, mu, sigma

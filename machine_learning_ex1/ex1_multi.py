@@ -1,5 +1,9 @@
-from machine_learning_ex1 import feature_normalize
-from machine_learning_ex1 import gradient_descent_multi
+from machine_learning_ex1.feature_normalize import feature_normalize
+from machine_learning_ex1.gradient_descent_multi import gradient_descent_multi
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 
 if __name__ == '__main__':
@@ -9,16 +13,16 @@ if __name__ == '__main__':
 	data = np.loadtxt('ex1data2.txt', delimiter=',')
 	x = data[:,:2]
 	y = data[:,2]
-	m = len(y);
+	m = len(y)
 
 	print('First 10 examples from the dataset:')
 	# print('x = [%s %s], y = %s \n' % (x[:10,:], y[:10,:]))
 	print('Normalizing Features ...')
 
-	x, mu, sigma, = feature_normalize
+	x, mu, sigma, = feature_normalize(x)
 
 	# Add intercept term to X
-	x = [np.ones(m, 1), x]
+	x = np.concatenate((np.ones((m, 1)), x), axis=1)
 
 	"""
 		Part 2: Gradient Descent 
@@ -45,4 +49,8 @@ if __name__ == '__main__':
 
 	# Init Theta and Run Gradient Descent
 	theta = np.zeros((3, 1))
-	[theta, J_history] = gradient_descent_multi(x, y, theta, alpha, num_iters)
+	theta, j_history = gradient_descent_multi(x, y, theta, alpha, num_iters)
+	plt.plot(j_history, '-b')
+	plt.xlabel('Number of iterations')
+	plt.ylabel('Cost J')
+	plt.show()
