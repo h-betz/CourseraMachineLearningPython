@@ -54,3 +54,14 @@ if __name__ == '__main__':
 	plt.xlabel('Number of iterations')
 	plt.ylabel('Cost J')
 	plt.show()
+
+	print('Theta computed from gradient descent: ')
+	print('%s' % theta)
+
+	"""
+		Estimate the price of a 1650 sq-ft, 3 br house
+	"""
+	d = np.array([1650, 3])
+	d = (d - mu) / sigma
+	d = np.append(1, d)
+	price = d * theta
