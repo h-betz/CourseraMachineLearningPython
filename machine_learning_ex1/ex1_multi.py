@@ -1,5 +1,6 @@
 from machine_learning_ex1.feature_normalize import feature_normalize
 from machine_learning_ex1.gradient_descent_multi import gradient_descent_multi
+from machine_learning_ex1.normal_eqn import normal_eqn
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 import matplotlib.pyplot as plt
@@ -64,4 +65,27 @@ if __name__ == '__main__':
 	d = np.array([1650, 3])
 	d = (d - mu) / sigma
 	d = np.append(1, d)
-	price = d * theta
+	price = d.dot(theta)
+
+	print('Predicted price of a 1650 sq-ft, 3 br house (using gradient descent) %s' % price)
+
+	"""
+		Part 3: Normal Equations
+	"""
+	data = np.loadtxt('ex1data2.txt', delimiter=',')
+	x = data[:,:2]
+	y = np.c_[data[:,2]]
+	m = len(y)
+
+	# Add intercept term to X
+	x = np.concatenate((np.ones((m, 1)), x), axis=1)
+
+	# Calculate the parameters from the normal equation
+	theta = normal_eqn(x, y)
+	print('%s' % theta)
+
+	# Estimate the price of a 1650 sq-ft, 3 br house
+	d = np.array([1, 1650, 3])
+	price = d.dot(theta)
+
+	print('Predicted price of a 1650 sq-ft, 3 br house (using normal equation): %s' % price)
