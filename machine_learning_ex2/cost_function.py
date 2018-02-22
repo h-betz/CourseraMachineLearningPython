@@ -1,3 +1,4 @@
+from machine_learning_ex2.sigmoid import sigmoid
 import numpy as np
 
 """
@@ -16,4 +17,6 @@ def cost_function(theta, x, y):
 	grad = np.zeros(theta.shape)
 
 	#TODO complete the function
+
+
 	pass

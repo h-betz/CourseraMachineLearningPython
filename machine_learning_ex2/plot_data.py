@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 def plot_data(x, y):
 	# Plot the positive and negative examples on a 2D plot, using the option 'k+' for the positive
 	# examples and 'ko' for the negative examples.
-	pos = list(filter(lambda i: i == 1, y))
-	neg = list(filter(lambda i: i == 0, y))
+	pos = [i for i in range(len(y)) if y[i] == 1]
+	neg = [i for i in range(len(y)) if y[i] == 0]
 
 	# TODO figure out the plotting
-	plt.plot(x[pos,1], x[pos,2])
+	plt.scatter(x[pos,0], x[pos,1], marker='x')
+	plt.scatter(x[neg,0], x[neg,1], c='y', marker='o')

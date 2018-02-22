@@ -15,7 +15,7 @@ if __name__ == '__main__':
 	# the problem we are working with
 
 	print('Plotting data with + indicating (y = 1) examples and o indicating (y = 0) examples.')
-	plot_data()
+	plot_data(x, y)
 
 	"""
 		Part 2: Compute Cost and Gradient
@@ -32,3 +32,5 @@ if __name__ == '__main__':
 
 	# Initializing fitting parameters
 	initial_theta = np.zeros((n + 1, 1))
+
+	[cost, grad] = cost_function(initial_theta, x, y)
