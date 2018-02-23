@@ -34,3 +34,9 @@ if __name__ == '__main__':
 	initial_theta = np.zeros((n + 1, 1))
 
 	[cost, grad] = cost_function(initial_theta, x, y)
+
+	print('Cost at initial theta (zeros): %s' % cost)
+	print('Expected cost (approx): 0.693')
+	print('Gradient at initial theta (zeros): ')
+	print('%s' % grad)
+	print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n')

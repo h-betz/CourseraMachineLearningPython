@@ -14,9 +14,10 @@ def cost_function(theta, x, y):
 	# cost w.r.t. each parameter in theta
 
 	m = len(y)
-	grad = np.zeros(theta.shape)
 
-	#TODO complete the function
+	h = sigmoid(x.dot(theta))
+	j = (-1 / m) * (np.multiply(y, np.log(h)) + (1 - y) * np.log(1 - h))
 
+	grad = (1 / m) * x.T.dot(h - y)
 
-	pass
+	return j, grad
