@@ -1,5 +1,7 @@
 from machine_learning_ex2.plot_data import plot_data
 from machine_learning_ex2.cost_function import cost_function
+from machine_learning_ex2.gradient_function import gradient_function
+from scipy.optimize import minimize
 import numpy as np
 
 if __name__ == '__main__':
@@ -23,7 +25,6 @@ if __name__ == '__main__':
 		In this part of the exercise, you will implement the cost and gradient
 		for logistic regression. You neeed to complete the code in cost_function
 	"""
-
 	# Setup the data matrix appropriately, and add ones for the intercept term
 	[m, n] = x.shape
 
@@ -31,12 +32,35 @@ if __name__ == '__main__':
 	x = np.c_[np.ones((m,1)), x]
 
 	# Initializing fitting parameters
-	initial_theta = np.zeros((n + 1, 1))
+	initial_theta = np.zeros(n+1)
 
-	[cost, grad] = cost_function(initial_theta, x, y)
+	cost = cost_function(initial_theta, x, y)
+	grad = gradient_function(initial_theta, x, y)
 
 	print('Cost at initial theta (zeros): %s' % cost)
 	print('Expected cost (approx): 0.693')
 	print('Gradient at initial theta (zeros): ')
 	print('%s' % grad)
 	print('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n')
+
+	# test_theta = np.c_[[-24, 0.2, 0.2]]
+	#
+	# cost = cost_function(test_theta, x, y)
+	# grad = gradient_function(test_theta, x, y)
+	# print('Cost at test theta: %s' % cost)
+	# print('Expected cost (approx): 0.218')
+	# print('Gradient at test theta:')
+	# print('%s' % grad)
+	# print('Expected gradients (approx):\n 0.043\n 2.566\n 2.647')
+
+
+	"""
+		Part 3: Optimizing using fminunc
+
+		In this exercise, you will use a built-in function (fminunc) to find the
+		optimal parameters theta.
+	"""
+	res = minimize(cost_function, initial_theta, args=(x,y), method=None, jac=gradient_function, options={'maxiter':400})
+	print('Cost at theta found by fminunc: %s' % res.fun)
+	print('Expected cost (approx): 0.203')
+	print('theta: ')

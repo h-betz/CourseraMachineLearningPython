@@ -16,8 +16,7 @@ def cost_function(theta, x, y):
 	m = len(y)
 
 	h = sigmoid(x.dot(theta))
-	j = (-1 / m) * (np.multiply(y, np.log(h)) + (1 - y) * np.log(1 - h))
-
-	grad = (1 / m) * x.T.dot(h - y)
-
-	return j, grad
+	j = (-1 / m) * (np.log(h).T.dot(y) + np.log(1-h).T.dot(1-y))
+	if np.isnan(j[0]):
+		return np.inf
+	return j[0]
