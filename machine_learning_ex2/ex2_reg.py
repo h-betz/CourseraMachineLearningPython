@@ -3,6 +3,7 @@ from machine_learning_ex2.plot_data import plot_data
 from machine_learning_ex2.ml import map_feature
 from machine_learning_ex2.cost_function_reg import cost_function_reg
 from machine_learning_ex2.gradient_function_reg import gradient_function_reg
+from scipy.optimize import minimize
 import pandas as pd
 import numpy as np
 
@@ -54,4 +55,6 @@ if __name__ == "__main__":
 	# Initialize fitting parameters
 	initial_theta = np.zeros((x.shape[1], 1))
 	lamb = 1
+
+	res = minimize(cost_function_reg, initial_theta, args=(x,y), method=None, jac=gradient_function_reg, options={'maxiter':3000})
 
